@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Board.Infrastructure", "Boa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Infrastructure", "src\Infrastructure\Board.Infrastructure\Board.Infrastructure.csproj", "{41F50D25-8BAA-433D-96AF-023C7450D171}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Hosts.DbMigrator", "src\Hosts\Board.Hosts.DbMigrator\Board.Hosts.DbMigrator.csproj", "{2477A871-5F0C-4193-8F25-06767DC3028E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{41F50D25-8BAA-433D-96AF-023C7450D171}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41F50D25-8BAA-433D-96AF-023C7450D171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41F50D25-8BAA-433D-96AF-023C7450D171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2477A871-5F0C-4193-8F25-06767DC3028E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2477A871-5F0C-4193-8F25-06767DC3028E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2477A871-5F0C-4193-8F25-06767DC3028E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2477A871-5F0C-4193-8F25-06767DC3028E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{596B295E-5233-432A-964C-947A97AC2640} = {5BD82CFD-C668-4E62-B38A-41197792764A}
 		{60AD4311-C4B9-4128-AD01-36742071AE91} = {D7230D6A-F131-49AF-A69C-363188853A32}
 		{41F50D25-8BAA-433D-96AF-023C7450D171} = {60AD4311-C4B9-4128-AD01-36742071AE91}
+		{2477A871-5F0C-4193-8F25-06767DC3028E} = {0F15371E-E643-40B5-AA6E-B28665F02B31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6216B2F3-22AC-4D75-A5D8-9FEDB2538804}
