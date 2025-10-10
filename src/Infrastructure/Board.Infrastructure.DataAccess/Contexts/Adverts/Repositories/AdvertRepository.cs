@@ -12,6 +12,13 @@ namespace Board.Infrastructure.DataAccess.Contexts.Adverts.Repositories
         IMapper mapper
         ) : IAdvertRepository
     {
+        /// <summary>
+        /// GetById
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>AdvertDto</returns>
+        /// <exception cref="NotFoundException"></exception>
         public async Task<AdvertDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             var result = await repository.GetByIdAsync(id, cancellationToken);

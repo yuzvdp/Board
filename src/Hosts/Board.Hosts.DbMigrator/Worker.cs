@@ -1,5 +1,8 @@
 namespace Board.Hosts.DbMigrator
 {
+    /// <summary>
+    /// Вроде как совсем не нужен
+    /// </summary>
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;

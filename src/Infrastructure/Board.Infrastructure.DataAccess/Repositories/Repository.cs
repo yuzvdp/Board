@@ -12,6 +12,13 @@ namespace Board.Infrastructure.DataAccess.Repositories
             DbContext = dbContext;
             DbSet = DbContext.Set<TEntity>();
         }
+
+        /// <summary>
+        /// Получить сущность по Id
+        /// </summary>
+        /// <param name="id">Id идентификатор</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await DbSet.FindAsync([id], cancellationToken);

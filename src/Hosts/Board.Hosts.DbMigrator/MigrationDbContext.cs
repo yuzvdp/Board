@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Board.Hosts.DbMigrator
 {
     /// <summary>
-    /// Контекст ДБ для мигратора
+    /// Контекст ДБ для мигратора.
+    /// Пустой класс, наследуюмый от ApplicationDbContext
     /// </summary>
     public class MigrationDbContext : ApplicationDbContext
     {
