@@ -1,6 +1,0 @@
-@Board.Hosts.Api_HostAddress = http://localhost:5204
-
-GET {{Board.Hosts.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
