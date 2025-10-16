@@ -11,7 +11,9 @@ namespace Board.Infrastructure.ComponentRegistrar.MapProfiles
             CreateMap<AdvertDto, Advert>(MemberList.None);
 
 
-            CreateMap<CreateAdvertDto, Advert>(MemberList.None);
+            CreateMap<CreateAdvertDto, Advert>(MemberList.None)
+                .ForMember(s => s.Id, map => map.Ignore())
+                .ForMember(s => s.CreatedAt, map => map.Ignore());
 
         }
     }

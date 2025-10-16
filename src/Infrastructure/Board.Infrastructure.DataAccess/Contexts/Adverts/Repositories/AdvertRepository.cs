@@ -32,14 +32,18 @@ namespace Board.Infrastructure.DataAccess.Contexts.Adverts.Repositories
         /// <exception cref="NotFoundException"></exception>
         public async Task<AdvertDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            var result = await repository.GetByIdAsync(id, cancellationToken);
+            var result = await repository.GetByIdAsync(id, cancellationToken) ?? throw new NotFoundException(id.ToString());
 
-            if (result is null)
+
+            //var advertDto = result.ProjectTo<AdvertDto>(mapper.ConfigurationProvider);
+            var advertDto = new AdvertDto()
             {
-                throw new NotFoundException(id.ToString());
-            }
+                Id = result.Id,
+                CreatedAt = result.CreatedAt,
+                Title = result.Title,
+            };
 
-            return (AdvertDto?)mapper.ProjectTo<AdvertDto>((IQueryable)result);
+            return advertDto;
         }
     }
 }

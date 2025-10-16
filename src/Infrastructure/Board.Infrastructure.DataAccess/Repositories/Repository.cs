@@ -61,7 +61,7 @@ namespace Board.Infrastructure.DataAccess.Repositories
         /// <returns></returns>
         public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await DbSet.FindAsync([id], cancellationToken);
+            return await DbSet.FindAsync(id, cancellationToken);
         }
     }
 }
