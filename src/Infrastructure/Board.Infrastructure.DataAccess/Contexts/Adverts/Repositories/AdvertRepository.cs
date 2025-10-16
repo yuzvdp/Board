@@ -12,6 +12,17 @@ namespace Board.Infrastructure.DataAccess.Contexts.Adverts.Repositories
         IMapper mapper
         ) : IAdvertRepository
     {
+        public async Task<Guid> AddAsync(Advert advert, CancellationToken cancellationToken)
+        {
+            await repository.AddAsync(advert, cancellationToken);
+            return advert.Id;
+        }
+
+        public Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return repository.DeleteByIdAsync(id, cancellationToken);
+        }
+
         /// <summary>
         /// GetById
         /// </summary>
@@ -22,7 +33,6 @@ namespace Board.Infrastructure.DataAccess.Contexts.Adverts.Repositories
         public async Task<AdvertDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             var result = await repository.GetByIdAsync(id, cancellationToken);
-
 
             if (result is null)
             {

@@ -5,5 +5,8 @@ namespace Board.Infrastructure.DataAccess.Repositories
     public interface IRepository<TEntity, TContext> where TEntity : class where TContext : DbContext
     {
         Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken = default);
+
     }
 }

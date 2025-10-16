@@ -1,0 +1,41 @@
+services:
+
+  board.hosts.api:
+    image: board.hosts.api
+    build:
+      context: .
+      dockerfile: src/Hosts/board.Hosts.Api/Dockerfile
+    ports:
+      - "5001:8080"
+    networks:
+      - board-network
+      
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Vgpugdk123098!
+      PGDATA: /data/postgres
+    volumes:
+      - postgres_data:/data/postgres
+    networks:
+      - board-network
+  
+  # redis:
+  #   container_name: redis
+  #   image: redis:latest
+  #   restart: always
+  #   ports:
+  #     - 6379:6379
+  #   environment:
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #   networks:
+  #     - articles-network
+
+
+
+volumes:
+  postgres_data:
+
+networks:
+  board-network:

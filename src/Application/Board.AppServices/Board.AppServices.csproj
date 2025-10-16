@@ -9,11 +9,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Contracts\Board.Contracts\Board.Contracts.csproj" />
+    <ProjectReference Include="..\..\Domain\Board.Domain\Board.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Specifications\" />
     <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
 </Project>

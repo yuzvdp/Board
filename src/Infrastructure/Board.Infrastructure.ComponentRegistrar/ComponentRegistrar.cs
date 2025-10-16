@@ -13,6 +13,7 @@ namespace Board.Infrastructure.ComponentRegistrar
         public static IServiceCollection RegisterAppServices(this IServiceCollection services)
         {
             services.AddScoped<IAdvertService, AdvertService>();
+            services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
 
             return services;
         }
@@ -30,8 +31,9 @@ namespace Board.Infrastructure.ComponentRegistrar
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<AdvertProfile>();
-            }, null);
+            });
             config.AssertConfigurationIsValid();
+
             return config;
         }
     }

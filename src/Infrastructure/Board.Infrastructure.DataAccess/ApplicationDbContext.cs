@@ -1,4 +1,5 @@
 ﻿using Board.Domain.Entities;
+using Board.Infrastructure.DataAccess.Contexts.Adverts.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Board.Infrastructure.DataAccess
@@ -21,7 +22,7 @@ namespace Board.Infrastructure.DataAccess
         {
             base.OnModelCreating(modelBuilder);
 
-            // TODO 
+            modelBuilder.ApplyConfiguration(new AdvertConfiguration());
         }
     }
 }

@@ -8,8 +8,11 @@ namespace Board.Infrastructure.ComponentRegistrar.MapProfiles
     {
         public AdvertProfile()
         {
-            CreateMap<AdvertDto, Advert>();
-            CreateMap<Advert, AdvertDto>();
+            CreateMap<AdvertDto, Advert>(MemberList.None);
+
+
+            CreateMap<CreateAdvertDto, Advert>(MemberList.None);
+
         }
     }
 }
