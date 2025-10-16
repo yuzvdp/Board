@@ -18,6 +18,7 @@ namespace Board.Hosts.DbMigrator
         {
             using var scope = serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetService<MigrationDbContext>();
+            context.Database.EnsureCreated();
             await context.Database.MigrateAsync();
         }
     }

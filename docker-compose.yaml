@@ -11,8 +11,11 @@ services:
       - board-network
       
   postgres:
-    image: postgres:17
-    environment:
+    image: postgres:14
+    ports: 
+       - "5433:5432"
+    environment:     
+      POSTGRES_DB: Board
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Vgpugdk123098!
       PGDATA: /data/postgres
