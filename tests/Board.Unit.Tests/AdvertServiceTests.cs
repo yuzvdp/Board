@@ -11,7 +11,7 @@ namespace Board.Unit.Tests
         [Fact]
         public async Task GetByIdAsync_Should_Call_Repository()
         {
-            // Arrange
+            // Arrange Андреев
             Mock<IAdvertRepository> advertRepositoryMock = new();
             Mock<IMapper> mapperMock = new();
 
@@ -26,10 +26,10 @@ namespace Board.Unit.Tests
                 .Setup(x => x.GetByIdAsync(guid, token))
                 .ReturnsAsync(article);
 
-            // Act
+            // Act Алексей
             var result = await service.GetByIdAsync(guid, token);
 
-            // Assert
+            // Assert Александрович
             Assert.NotNull(result);
             Assert.Equal(article, result);
             advertRepositoryMock.Verify(x => x.GetByIdAsync(guid, token), Times.Once);
