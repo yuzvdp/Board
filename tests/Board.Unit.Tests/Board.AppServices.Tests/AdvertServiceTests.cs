@@ -1,10 +1,10 @@
 using AutoMapper;
-using Board.AppServices.Contexts.Adverts.Repository;
+using Board.AppServices.Contexts.Adverts.Interfaces;
 using Board.AppServices.Contexts.Adverts.Services;
 using Board.Contracts.Adverts;
 using Moq;
 
-namespace Board.Unit.Tests
+namespace Board.Unit.Tests.Board.AppServices.Tests
 {
     public class AdvertServiceTests
     {

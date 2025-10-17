@@ -26,9 +26,7 @@ namespace Board.Infrastructure.DataAccess.Repositories
         /// Добавить сущность
         /// </summary>
         /// <param name="entity"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="cancellationToken"></param>      
         public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
             await DbSet.AddAsync(entity, cancellationToken);
@@ -39,9 +37,7 @@ namespace Board.Infrastructure.DataAccess.Repositories
         /// Удалить сущность
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="cancellationToken"></param>     
         public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var entity = await GetByIdAsync(id, cancellationToken);
@@ -54,11 +50,20 @@ namespace Board.Infrastructure.DataAccess.Repositories
         }
 
         /// <summary>
+        /// Получить все сущности
+        /// </summary>
+        /// <returns>IQueryable</returns>    
+        public IQueryable<TEntity> GetAll()
+        {
+            return DbSet;
+        }
+
+        /// <summary>
         /// Получить сущность по Id
         /// </summary>
         /// <param name="id">Id идентификатор</param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <returns>Entity</returns>
         public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await DbSet.FindAsync(id, cancellationToken);

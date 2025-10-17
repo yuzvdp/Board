@@ -3,6 +3,7 @@ using System;
 using Board.Hosts.DbMigrator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Board.Hosts.DbMigrator.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    partial class MigrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251017092137_add_users_categories")]
+    partial class add_users_categories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace Board.Hosts.DbMigrator.Migrations
                     b.HasIndex("CreatedAt", "Id")
                         .IsUnique();
 
-                    b.ToTable("Adverts", (string)null);
+                    b.ToTable("Adverts");
                 });
 
             modelBuilder.Entity("Board.Domain.Entities.Category", b =>
@@ -73,7 +76,7 @@ namespace Board.Hosts.DbMigrator.Migrations
                     b.HasIndex("CreatedAt", "Id")
                         .IsUnique();
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Board.Domain.Entities.User", b =>
@@ -103,7 +106,7 @@ namespace Board.Hosts.DbMigrator.Migrations
                     b.HasIndex("CreatedAt", "Id")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Board.Domain.Entities.Advert", b =>

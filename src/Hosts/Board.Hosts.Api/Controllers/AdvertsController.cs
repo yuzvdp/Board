@@ -1,11 +1,13 @@
-﻿using Board.AppServices.Contexts.Adverts.Services;
+﻿using Board.AppServices.Contexts.Adverts.Interfaces;
 using Board.Contracts.Adverts;
+using Board.Contracts.Errors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Board.Hosts.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ProducesResponseType(typeof(ErrorDto), StatusCodes.Status500InternalServerError)]
     public class AdvertsController(IAdvertService advertService) : ControllerBase
     {
         /// <summary>
@@ -13,10 +15,10 @@ namespace Board.Hosts.Api.Controllers
         /// </summary>
         /// <param name="advert"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <returns>Guid</returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateArticle(CreateAdvertDto advert, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateAdvert(CreateAdvertDto advert, CancellationToken cancellationToken)
         {
             var id = await advertService.CreateAsync(advert, cancellationToken);
             return StatusCode(StatusCodes.Status201Created, id);
@@ -27,20 +29,19 @@ namespace Board.Hosts.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <returns>AdvertDto</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(AdvertDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-        public async Task<IActionResult> GetArticleById(Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAdvertById(Guid id, CancellationToken cancellationToken)
         {
-            var article = await advertService.GetByIdAsync(id, cancellationToken);
-            if (article == null)
+            var advert = await advertService.GetByIdAsync(id, cancellationToken);
+            if (advert == null)
             {
                 return NotFound();
             }
 
-            return Ok(article);
+            return Ok(advert);
         }
 
         /// <summary>
@@ -51,9 +52,7 @@ namespace Board.Hosts.Api.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(AdvertDto), StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-        public async Task<IActionResult> DeleteArticle(Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteAdvert(Guid id, CancellationToken cancellationToken)
         {
             await advertService.DeleteAsync(id, cancellationToken);
             return NoContent();

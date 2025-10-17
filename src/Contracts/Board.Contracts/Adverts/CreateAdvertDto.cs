@@ -3,5 +3,7 @@
     public class CreateAdvertDto
     {
         public string? Title { get; set; }
+        public Guid UserID { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }

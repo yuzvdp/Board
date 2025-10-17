@@ -1,12 +1,11 @@
 ﻿using Board.Contracts.Adverts;
-using Board.Domain.Entities;
 
-namespace Board.AppServices.Contexts.Adverts.Repository
+namespace Board.AppServices.Contexts.Adverts.Interfaces
 {
-    public interface IAdvertRepository
+    public interface IAdvertService
     {
         Task<AdvertDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
-        Task<Guid> AddAsync(Advert advert, CancellationToken cancellationToken);
+        Task<Guid> CreateAsync(CreateAdvertDto createAdvertDto, CancellationToken cancellationToken);
         Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     }
 }
