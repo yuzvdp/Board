@@ -10,6 +10,7 @@ using Board.Infrastructure.DataAccess.Contexts.Adverts.Repositories;
 using Board.Infrastructure.DataAccess.Contexts.Categories.Repositories;
 using Board.Infrastructure.DataAccess.Contexts.Users.Repositories;
 using Board.Infrastructure.DataAccess.Repositories;
+using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Board.Infrastructure.ComponentRegistrar
@@ -22,6 +23,7 @@ namespace Board.Infrastructure.ComponentRegistrar
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+            services.AddMassTransit(x => x.UsingRabbitMq());
 
             return services;
         }

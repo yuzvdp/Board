@@ -23,6 +23,20 @@ services:
       - postgres_data:/data/postgres
     networks:
       - board-network
+
+  rabbitmq:
+    image: rabbitmq:4-management # Use the image with the management plugin
+    hostname: my-rabbit # Define a hostname for the RabbitMQ node
+    ports:
+      - "5672:5672" # Standard AMQP port
+      - "15672:15672" # Management UI port
+    
+    environment:
+      RABBITMQ_DEFAULT_USER: guest # Default username (change in production)
+      RABBITMQ_DEFAULT_PASS: guest # Default password (change in production)
+    networks:
+      - board-network
+
   
   # redis:
   #   container_name: redis
@@ -38,7 +52,10 @@ services:
 
 
 volumes:
-  postgres_data:
+  postgres_data: 
+  rabbitmq_data:
 
 networks:
   board-network:
+  
+          

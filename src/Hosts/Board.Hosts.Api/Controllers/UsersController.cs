@@ -1,6 +1,8 @@
 ﻿using Board.AppServices.Contexts.Users.Interfaces;
 using Board.Contracts.Errors;
 using Board.Contracts.Users;
+using Board.Domain.RabbitMQMessages;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Board.Hosts.Api.Controllers
@@ -8,7 +10,7 @@ namespace Board.Hosts.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ProducesResponseType(typeof(ErrorDto), StatusCodes.Status500InternalServerError)]
-    public class UsersController(IUserService userService) : ControllerBase
+    public class UsersController(IUserService userService, IPublishEndpoint publishEndpoint) : ControllerBase
     {
         /// <summary>
         /// Создать User
@@ -21,6 +23,16 @@ namespace Board.Hosts.Api.Controllers
         public async Task<IActionResult> CreateUser(CreateUserDto user, CancellationToken cancellationToken)
         {
             var id = await userService.CreateAsync(user, cancellationToken);
+
+            if (id != null)
+            {
+                // отправляем сообщение кролику!
+                await publishEndpoint.Publish<UserCreated>(new
+                {
+                    user.Username,
+                });
+            }
+
             return StatusCode(StatusCodes.Status201Created, id);
         }
 

@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Unit.Tests", "tests\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Api.Tests", "tests\Board.Api.Tests\Board.Api.Tests.csproj", "{6023B95E-F88C-4501-83F7-138AF003B804}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Hosts.TelegramSender", "src\Hosts\Board.Hosts.TelegramSender\Board.Hosts.TelegramSender.csproj", "{73FBB38F-B3BA-48A3-A01E-948866E0649B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{6023B95E-F88C-4501-83F7-138AF003B804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6023B95E-F88C-4501-83F7-138AF003B804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6023B95E-F88C-4501-83F7-138AF003B804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73FBB38F-B3BA-48A3-A01E-948866E0649B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73FBB38F-B3BA-48A3-A01E-948866E0649B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73FBB38F-B3BA-48A3-A01E-948866E0649B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73FBB38F-B3BA-48A3-A01E-948866E0649B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +123,7 @@ Global
 		{2477A871-5F0C-4193-8F25-06767DC3028E} = {0F15371E-E643-40B5-AA6E-B28665F02B31}
 		{F9E386D9-4D41-46B2-B2CB-CE697E46F26A} = {A331176E-504D-4BF7-84F1-3D154FC535F4}
 		{6023B95E-F88C-4501-83F7-138AF003B804} = {A331176E-504D-4BF7-84F1-3D154FC535F4}
+		{73FBB38F-B3BA-48A3-A01E-948866E0649B} = {0F15371E-E643-40B5-AA6E-B28665F02B31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6216B2F3-22AC-4D75-A5D8-9FEDB2538804}
