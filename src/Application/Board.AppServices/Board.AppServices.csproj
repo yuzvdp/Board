@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\Adverts\Specification\" />
-    <Folder Include="Specifications\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 
