@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Board.AppServices.Contexts.Adverts.Interfaces;
+using Board.AppServices.Specification;
 using Board.Contracts.Adverts;
+using Board.Contracts.Base;
 using Board.Domain.Entities;
 using Board.Infrastructure.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -75,6 +77,58 @@ namespace Board.Infrastructure.DataAccess.Contexts.Adverts.Repositories
             //};            
 
             return result;
+        }
+
+        /// <summary>
+        /// Поиск с пагинацией
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="page"></param>
+        /// <param name="take"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<PaginationCollection<AdvertDto>> FindAsync(Specification<Advert> predicate,
+            int page,
+            int take,
+            CancellationToken cancellationToken)
+        {
+            var query = repository.GetAll().Where(predicate);
+
+            var total = await query.CountAsync(cancellationToken);
+
+            var result = await query
+                .OrderBy(a => a.Id)
+                .Skip(take * (page - 1))
+                .Take(take)
+                .ProjectTo<AdvertDto>(mapper.ConfigurationProvider)
+                .ToArrayAsync(cancellationToken);
+
+            return new PaginationCollection<AdvertDto>
+            {
+                Items = result.AsReadOnly(),
+                Total = total,
+                AvailablePages = (int)double.Round((total / (double)take), MidpointRounding.ToPositiveInfinity) - page,
+            };
+        }
+
+        /// <summary>
+        /// Фильтрация по наименованию
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<IReadOnlyCollection<AdvertDto>> GetByFilterAsync(AdvertFilterDto filter, CancellationToken cancellationToken)
+        {
+            var adverts = repository.GetAll();
+
+            if (!string.IsNullOrWhiteSpace(filter.Title))
+            {
+                adverts = adverts.Where(a => a.Title.Contains(filter.Title));
+            }
+
+            return await adverts
+                .ProjectTo<AdvertDto>(mapper.ConfigurationProvider)
+                .ToListAsync(cancellationToken);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Board.AppServices.Contexts.Adverts.Interfaces;
+using Board.AppServices.Specification;
 using Board.Contracts.Adverts;
+using Board.Contracts.Base;
 using Board.Domain.Entities;
 
 namespace Board.AppServices.Contexts.Adverts.Services
@@ -30,6 +32,34 @@ namespace Board.AppServices.Contexts.Adverts.Services
         {
             return advertRepository.DeleteAsync(id, cancellationToken);
         }
+
+        /// <summary>
+        /// Поиск по предикату с пагинацией
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="page"></param>
+        /// <param name="take"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<PaginationCollection<AdvertDto>> FindAsync(Specification<Advert> predicate,
+            int page,
+            int take,
+            CancellationToken cancellationToken)
+        {
+            return advertRepository.FindAsync(predicate, page, take, cancellationToken);
+        }
+
+        /// <summary>
+        /// Фильтрация
+        /// </summary>
+        /// <param name="filter">AdvertFilterDto</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IReadOnlyCollection<AdvertDto>> GetByFilterAsync(AdvertFilterDto filter, CancellationToken cancellationToken)
+        {
+            return advertRepository.GetByFilterAsync(filter, cancellationToken);
+        }
+
 
         /// <summary>
         /// Получить advert по id
